@@ -6,6 +6,8 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -30,6 +32,7 @@ namespace BrowserAPI.Controllers
             Term term = await db.Terms.FindAsync(id);
             if (term == null)
             {
+                await SendLog("NotFound");
                 return NotFound();
             }
 
@@ -42,11 +45,13 @@ namespace BrowserAPI.Controllers
         {
             if (!ModelState.IsValid)
             {
+                await SendLog("BadRequest");
                 return BadRequest(ModelState);
             }
 
             if (id != term.Id)
             {
+                await SendLog("BadRequest");
                 return BadRequest();
             }
 
@@ -60,6 +65,7 @@ namespace BrowserAPI.Controllers
             {
                 if (!TermExists(id))
                 {
+                    await SendLog("NotFound");
                     return NotFound();
                 }
                 else
@@ -77,6 +83,7 @@ namespace BrowserAPI.Controllers
         {
             if (!ModelState.IsValid)
             {
+                await SendLog("BadRequest");
                 return BadRequest(ModelState);
             }
 
@@ -93,6 +100,7 @@ namespace BrowserAPI.Controllers
             Term term = await db.Terms.FindAsync(id);
             if (term == null)
             {
+                await SendLog("NotFound");
                 return NotFound();
             }
 
@@ -114,6 +122,30 @@ namespace BrowserAPI.Controllers
         private bool TermExists(int id)
         {
             return db.Terms.Count(e => e.Id == id) > 0;
+        }
+
+        private static async Task SendLog(string message)
+        {
+            string URL_MONITOR = "http://---------------.azurewebsites.net/api/LogMonitors";
+
+            HttpClient _httpClient = new HttpClient();
+
+            string str = "{\"Origin\":\"Browser API\",\"Time\":\"" + DateTime.Now.TimeOfDay.ToString() + "\",\"Message\":\"" + message + "\"} ";
+
+            _httpClient.DefaultRequestHeaders
+             .Accept
+             .Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            // Put method with error handling
+            using (var content = new StringContent(str, Encoding.UTF8, "application/json"))
+            {
+                var result = await _httpClient.PostAsync($"{URL_MONITOR}", content).ConfigureAwait(false);
+                if (result.StatusCode == HttpStatusCode.OK)
+                {
+                    return;
+                }
+
+            }
         }
     }
 }
