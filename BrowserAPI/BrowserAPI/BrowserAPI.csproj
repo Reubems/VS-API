@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C11E8B1E-700E-4FD8-80F6-96FDA5C9FC51}</ProjectGuid>
+    <ProjectGuid>{88C71138-F824-4C2F-AD7D-B59B724DD5B1}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MonitorAPI</RootNamespace>
-    <AssemblyName>MonitorAPI</AssemblyName>
+    <RootNamespace>BrowserAPI</RootNamespace>
+    <AssemblyName>BrowserAPI</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -184,12 +184,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LogMonitorsController.cs" />
+    <Compile Include="Controllers\TermsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\LogMonitor.cs" />
-    <Compile Include="Models\MonitorAPIContext.cs" />
+    <Compile Include="Models\BrowserAPIContext.cs" />
+    <Compile Include="Models\Term.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -223,8 +223,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Properties\PublishProfiles\MonitorAPI20180308011857 - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\MonitorAPI20180311122631 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\BrowserAPI20180311010841 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\BrowserAPI20180311112114 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\BrowserAPI20180311113107 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -278,9 +279,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>5128</DevelopmentServerPort>
+          <DevelopmentServerPort>7303</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:5128/</IISUrl>
+          <IISUrl>http://localhost:7303/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
