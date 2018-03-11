@@ -11,5 +11,9 @@ namespace BrowserAPI.Models
         public int Id { get; set; }
         [Required]
         public string Value { get; set; }
+        [Required]
+        public string Path { get; set; }
+        [Required]
+        public TimeSpan Time { get; set; }
     }
 }

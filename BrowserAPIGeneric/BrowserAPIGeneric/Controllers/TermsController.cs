@@ -87,22 +87,6 @@ namespace BrowserAPIGeneric.Controllers
             return CreatedAtRoute("DefaultApi", new { id = term.Id }, term);
         }
 
-        // DELETE: api/Terms/5
-        [ResponseType(typeof(Term))]
-        public async Task<IHttpActionResult> DeleteTerm(int id)
-        {
-            Term term = await db.Terms.FindAsync(id);
-            if (term == null)
-            {
-                return NotFound();
-            }
-
-            db.Terms.Remove(term);
-            await db.SaveChangesAsync();
-
-            return Ok(term);
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

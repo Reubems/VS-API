@@ -29,11 +29,7 @@ namespace BrowserAPIGeneric.Migrations
             //    );
             //
 
-            context.Terms.AddOrUpdate(x => x.Id,
-             new Term() { Id = 1, Value = "Jane Austen" },
-             new Term() { Id = 2, Value = "Charles Dickens" },
-             new Term() { Id = 3, Value = "Miguel de Cervantes" }
-        );
+            
         }
     }
 }
