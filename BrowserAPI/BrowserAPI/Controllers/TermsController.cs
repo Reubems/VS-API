@@ -15,6 +15,7 @@ using BrowserAPI.Models;
 
 namespace BrowserAPI.Controllers
 {
+    [RoutePrefix("api/Terms")]
     public class TermsController : ApiController
     {
         private BrowserAPIContext db = new BrowserAPIContext();
@@ -126,7 +127,7 @@ namespace BrowserAPI.Controllers
 
         private static async Task SendLog(string message)
         {
-            string URL_MONITOR = "http://---------------.azurewebsites.net/api/LogMonitors";
+            string URL_MONITOR = "http://localhost:5128/api/LogMonitors";
 
             HttpClient _httpClient = new HttpClient();
 
@@ -145,6 +146,13 @@ namespace BrowserAPI.Controllers
                     return;
                 }
 
+            }
+        }
+
+        public HttpResponseMessage GetTermFilter2(string Value)
+        {
+            using (db) {
+                return Request.CreateResponse(HttpStatusCode.OK, db.Terms.Where(e => e.Value.ToLower() == Value).ToList());
             }
         }
     }

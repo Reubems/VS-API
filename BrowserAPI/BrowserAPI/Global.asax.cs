@@ -18,6 +18,17 @@ namespace BrowserAPI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            RegisterRoutes(RouteTable.Routes);
+        }
+
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapRoute(
+                "Blog",                                           // Route name
+                "Archive/{entryDate}",                            // URL with parameters
+                new { controller = "Archive", action = "Entry" }  // Parameter defaults
+            );
         }
     }
 }
